@@ -458,6 +458,10 @@
                                         required="required">
                                 </div>
                                 <div class="mt-25">
+                                    <input type="number" name="Phone" id="phone" placeholder="Phone Number with Country code"
+                                        required="required">
+                                </div>
+                                <div class="mt-25">
                                     <textarea name="Message" id="Message" placeholder="Message..."></textarea>
                                 </div>
                                 <div class="mt-25">
@@ -709,10 +713,17 @@
 
         form.addEventListener('submit', e => {
             e.preventDefault()
+            var phone = document.forms["jForm"]["Phone"].value;
+var phoneNum = phone.replace(/[^\d]/g, '');
+if(phoneNum.length > 6 && phoneNum.length <= 12) {  
+           
             fetch(scriptURL, { method: 'POST', body: new FormData(form) })
                 .then(response => alert("You have successfully submitted."))
                 document.getElementById("jForm").reset()
                 .catch(error => console.error('Error!', error.message))
+            }else{
+                alert('Please enter a valid phone number');
+            }
 
         })
     </script>
